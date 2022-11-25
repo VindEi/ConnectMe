@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectMe", "ConnectMe.csproj", "{10F931C3-617A-441B-9906-AB23D6EBD21E}"
 EndProject
-Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "ConnectMe SetUp", "..\ConnectMe SetUp\ConnectMe SetUp.aiproj", "{3D9510A5-D69D-4877-A7B0-8B4D84728854}"
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "ConnectMe Install", "..\ConnectMe Install\ConnectMe Install.aiproj", "{C6C479F9-3650-4567-9EC2-DF23ACA474AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +20,12 @@ Global
 		{10F931C3-617A-441B-9906-AB23D6EBD21E}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{10F931C3-617A-441B-9906-AB23D6EBD21E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10F931C3-617A-441B-9906-AB23D6EBD21E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D9510A5-D69D-4877-A7B0-8B4D84728854}.All|Any CPU.ActiveCfg = DefaultBuild
-		{3D9510A5-D69D-4877-A7B0-8B4D84728854}.Debug|Any CPU.ActiveCfg = DefaultBuild
-		{3D9510A5-D69D-4877-A7B0-8B4D84728854}.Release|Any CPU.ActiveCfg = DefaultBuild
-		{3D9510A5-D69D-4877-A7B0-8B4D84728854}.Release|Any CPU.Build.0 = DefaultBuild
+		{C6C479F9-3650-4567-9EC2-DF23ACA474AE}.All|Any CPU.ActiveCfg = DefaultBuild
+		{C6C479F9-3650-4567-9EC2-DF23ACA474AE}.All|Any CPU.Build.0 = DefaultBuild
+		{C6C479F9-3650-4567-9EC2-DF23ACA474AE}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{C6C479F9-3650-4567-9EC2-DF23ACA474AE}.Debug|Any CPU.Build.0 = DefaultBuild
+		{C6C479F9-3650-4567-9EC2-DF23ACA474AE}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{C6C479F9-3650-4567-9EC2-DF23ACA474AE}.Release|Any CPU.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

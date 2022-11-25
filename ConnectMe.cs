@@ -22,7 +22,7 @@ namespace ConnectMe
         private extern static void SendMessage(System.IntPtr hWnd, int hwnd, int wParam, int lparam);
         Custom CustomForm;
 
-        public static bool IsDirect;
+ 
         public ConnectMe()
         {
             InitializeComponent();
@@ -73,7 +73,6 @@ namespace ConnectMe
                     }
                     if (DnsBox.SelectedItem == "Custom")
                     {
-                        IsDirect = true;
                         CustomForm.ShowDialog();
                         ConnectionBtn.Text = "Disconnect";
 
@@ -95,7 +94,8 @@ namespace ConnectMe
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
+            NotifyIcon.Visible = false;
         }
 
         private void MinimizeBtn_Click(object sender, EventArgs e)
@@ -103,25 +103,33 @@ namespace ConnectMe
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void HIdeToTray_Click(object sender, EventArgs e)
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            this.Hide();
-
+            if (!this.Visible)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                this.BringToFront();
+            }
 
         }
 
-        private void NotifyIcon_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.Visible)
-            {
+            Application.Exit();
+            NotifyIcon.Visible = false;
+        }
 
-            }
-            else
+        private void ConnectMe_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
             {
-                this.Show();
+                this.Hide();
+                NotifyIcon.Visible = true;
+                NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Im Still Here :)", ToolTipIcon.Info);
             }
-
+            else if (FormWindowState.Normal == this.WindowState)
+            { NotifyIcon.Visible = false; }
         }
 
         private void ToolStrip_MouseDown(object sender, MouseEventArgs e)
@@ -130,12 +138,21 @@ namespace ConnectMe
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-
+        private void BtnCurrentDns_Click(object sender, EventArgs e)
+        {
+            BtnCurrentDns.Text = NetworkManagement.GetCurrentDns();
+        }
 
         private void BtnPingFormOpen_Click(object sender, EventArgs e)
         {
             PingServer pingfrm = new PingServer();
             pingfrm.Show();
+        }
+
+        private void NotifyIcon_Click(object sender, EventArgs e)
+        {
+ 
+
         }
         private void BtnDirect_ButtonSpecPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -156,20 +173,58 @@ namespace ConnectMe
 
         }
 
-        private void BtnCurrentDns_Click(object sender, EventArgs e)
-        {
-            BtnCurrentDns.Text = NetworkManagement.GetCurrentDns();
-        }
-
-        private void BtnOpenUptadeFrm_Click(object sender, EventArgs e)
-        {
-            Update Updatefrm = new Update();
-            Updatefrm.Show();
-        }
-
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
         }
+
+        private void ConnectMe_Move(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void defualtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NetworkManagement.UnsetDNS();
+            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected Back To Defualt", ToolTipIcon.Info);
+        }
+
+        private void cloudflareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To CloudFlare Dns", ToolTipIcon.Info);
+            string DnsServer = "1.1.1.1";
+            string DnsServer2 = "1.0.0.1";
+
+            NetworkManagement.SetDNS(DnsServer, DnsServer2);
+        }
+
+        private void ciscoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Cisco Dns", ToolTipIcon.Info);
+            string DnsServer = "208.67.222.222";
+            string DnsServer2 = "208.67.220.220";
+
+            NetworkManagement.SetDNS(DnsServer, DnsServer2);
+        }
+
+        private void googleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Google Dns", ToolTipIcon.Info);
+            string DnsServer = "8.8.8.8";
+            string DnsServer2 = "8.8.4.4";
+
+            NetworkManagement.SetDNS(DnsServer, DnsServer2);
+        }
+
+        private void electroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Electro Dns", ToolTipIcon.Info);
+
+            string DnsServer = "78.157.42.100";
+            string DnsServer2 = "78.157.42.101";
+
+            NetworkManagement.SetDNS(DnsServer, DnsServer2);
+        }
     }
+
 }

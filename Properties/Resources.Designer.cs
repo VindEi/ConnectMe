@@ -93,39 +93,9 @@ namespace ConnectMe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap photo_2022_02_09_15_19_37 {
-            get {
-                object obj = ResourceManager.GetObject("photo_2022-02-09_15-19-37", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Pin_16 {
             get {
                 object obj = ResourceManager.GetObject("Pin_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Telegram_32 {
-            get {
-                object obj = ResourceManager.GetObject("Telegram_32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Update_16 {
-            get {
-                object obj = ResourceManager.GetObject("Update_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

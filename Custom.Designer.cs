@@ -1,5 +1,4 @@
-﻿
-namespace ConnectMe
+﻿namespace ConnectMe
 {
     partial class Custom
     {
@@ -30,53 +29,49 @@ namespace ConnectMe
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Custom));
-            this.SecendDnstxt = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.MainDnsTxt = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.ConnectBtn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ConnectBtn = new System.Windows.Forms.Button();
+            this.MainDnsTxt = new System.Windows.Forms.TextBox();
+            this.SecendDnstxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // SecendDnstxt
-            // 
-            this.SecendDnstxt.Location = new System.Drawing.Point(13, 62);
-            this.SecendDnstxt.Name = "SecendDnstxt";
-            this.SecendDnstxt.Size = new System.Drawing.Size(100, 23);
-            this.SecendDnstxt.TabIndex = 9;
-            this.SecendDnstxt.Text = "149.112.112.112";
-            // 
-            // MainDnsTxt
-            // 
-            this.MainDnsTxt.Location = new System.Drawing.Point(13, 33);
-            this.MainDnsTxt.Name = "MainDnsTxt";
-            this.MainDnsTxt.Size = new System.Drawing.Size(100, 23);
-            this.MainDnsTxt.TabIndex = 8;
-            this.MainDnsTxt.Text = "9.9.9.9";
             // 
             // ConnectBtn
             // 
-            this.ConnectBtn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Custom3;
-            this.ConnectBtn.Location = new System.Drawing.Point(28, 111);
+            this.ConnectBtn.Location = new System.Drawing.Point(12, 83);
             this.ConnectBtn.Name = "ConnectBtn";
-            this.ConnectBtn.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Black;
-            this.ConnectBtn.Size = new System.Drawing.Size(65, 25);
-            this.ConnectBtn.TabIndex = 10;
-            this.ConnectBtn.Values.Text = "Connect";
-            this.ConnectBtn.Click += new System.EventHandler(this.ConnectBtn_Click);
+            this.ConnectBtn.Size = new System.Drawing.Size(96, 34);
+            this.ConnectBtn.TabIndex = 0;
+            this.ConnectBtn.Text = "Connect";
+            this.ConnectBtn.UseVisualStyleBackColor = true;
+            this.ConnectBtn.Click += new System.EventHandler(this.CustomBtn_Click);
+            // 
+            // MainDnsTxt
+            // 
+            this.MainDnsTxt.Location = new System.Drawing.Point(8, 12);
+            this.MainDnsTxt.Name = "MainDnsTxt";
+            this.MainDnsTxt.Size = new System.Drawing.Size(100, 20);
+            this.MainDnsTxt.TabIndex = 1;
+            // 
+            // SecendDnstxt
+            // 
+            this.SecendDnstxt.Location = new System.Drawing.Point(8, 38);
+            this.SecendDnstxt.Name = "SecendDnstxt";
+            this.SecendDnstxt.Size = new System.Drawing.Size(100, 20);
+            this.SecendDnstxt.TabIndex = 2;
             // 
             // Custom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.ClientSize = new System.Drawing.Size(125, 158);
-            this.Controls.Add(this.ConnectBtn);
+            this.ClientSize = new System.Drawing.Size(120, 128);
             this.Controls.Add(this.SecendDnstxt);
             this.Controls.Add(this.MainDnsTxt);
+            this.Controls.Add(this.ConnectBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Custom";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Custom";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Custom_FormClosed);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Custom Dns";
             this.Load += new System.EventHandler(this.Custom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -85,8 +80,8 @@ namespace ConnectMe
 
         #endregion
 
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox SecendDnstxt;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox MainDnsTxt;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton ConnectBtn;
+        private System.Windows.Forms.Button ConnectBtn;
+        private System.Windows.Forms.TextBox MainDnsTxt;
+        private System.Windows.Forms.TextBox SecendDnstxt;
     }
 }
