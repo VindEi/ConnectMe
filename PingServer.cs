@@ -28,16 +28,22 @@ namespace ConnectMe
 
         private void BtnCheckPing_Click(object sender, EventArgs e)
         {
-            Ping ping = new Ping();
-            PingReply Replay;
-            string Host;
-            Host = TxtHost.Text;
-            Replay = ping.Send(Host);
-
-            if (Replay.Status == IPStatus.Success)
+            try
             {
-                lblResult.Text = "Ping to " + Host.ToString() + "[" + Replay.Address.ToString() + "]" + " Successful"
-                   + " Response delay = " + Replay.RoundtripTime.ToString() + " ms" + "\n";
+                Ping ping = new Ping();
+                PingReply Replay;
+                string Host;
+                Host = TxtHost.Text;
+                Replay = ping.Send(Host);
+                if (Replay.Status == IPStatus.Success)
+                {
+                    lblResult.Text = "Ping to " + Host.ToString() + "[" + Replay.Address.ToString() + "]" + " Successful"
+                       + " Response delay = " + Replay.RoundtripTime.ToString() + " ms" + "\n";
+                }
+            }
+            catch
+            {
+                lblResult.Text = "LoL ,Failed (No network connection or invalid server) 0 iq move ngl";
             }
         }
         private void TxtHost_TextChanged(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using System.Net.NetworkInformation;
 
 namespace ConnectMe
 {
@@ -41,43 +42,34 @@ namespace ConnectMe
                 {
                     if (DnsBox.SelectedItem == "Cloudflare")
                     {
-                        string DnsServer = "1.1.1.1";
-                        string DnsServer2 = "1.0.0.1";
-
-                        NetworkManagement.SetDNS(DnsServer, DnsServer2);
+                        NetworkManagement.SetDNS("1.1.1.1", "1.0.0.1");
                         ConnectionBtn.Text = "Disconnect";
                     }
                     if (DnsBox.SelectedItem == "Cisco")
                     {
-                        string DnsServer = "208.67.222.222";
-                        string DnsServer2 = "208.67.220.220";
-
-                        NetworkManagement.SetDNS(DnsServer, DnsServer2);
+                        NetworkManagement.SetDNS("208.67.222.222", "208.67.220.220");
                         ConnectionBtn.Text = "Disconnect";
                     }
                     if (DnsBox.SelectedItem == "Google")
                     {
-                        string DnsServer = "8.8.8.8";
-                        string DnsServer2 = "8.8.4.4";
-
-                        NetworkManagement.SetDNS(DnsServer, DnsServer2);
+                        NetworkManagement.SetDNS("8.8.8.8", "8.8.4.4");
                         ConnectionBtn.Text = "Disconnect";
                     }
                     if (DnsBox.SelectedItem == "Electro")
                     {
-                        string DnsServer = "78.157.42.100";
-                        string DnsServer2 = "78.157.42.101";
-
-                        NetworkManagement.SetDNS(DnsServer, DnsServer2);
+                        NetworkManagement.SetDNS("78.157.42.100", "78.157.42.101");
+                        ConnectionBtn.Text = "Disconnect";
+                    }
+                    if (DnsBox.SelectedItem == "Shecan")
+                    {
+                        NetworkManagement.SetDNS("178.22.122.100", "185.51.200.2");
                         ConnectionBtn.Text = "Disconnect";
                     }
                     if (DnsBox.SelectedItem == "Custom")
                     {
                         CustomForm.ShowDialog();
                         ConnectionBtn.Text = "Disconnect";
-
                     }
-
 
                 }
                 else if (DnsBox.SelectedItem == null)
@@ -192,38 +184,60 @@ namespace ConnectMe
         private void cloudflareToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To CloudFlare Dns", ToolTipIcon.Info);
-            string DnsServer = "1.1.1.1";
-            string DnsServer2 = "1.0.0.1";
-
-            NetworkManagement.SetDNS(DnsServer, DnsServer2);
+            NetworkManagement.SetDNS("1.1.1.1", "1.0.0.1");
+            ConnectionBtn.Text = "Disconnect";
         }
 
         private void ciscoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Cisco Dns", ToolTipIcon.Info);
-            string DnsServer = "208.67.222.222";
-            string DnsServer2 = "208.67.220.220";
-
-            NetworkManagement.SetDNS(DnsServer, DnsServer2);
+            NetworkManagement.SetDNS("208.67.222.222", "208.67.220.220");
+            ConnectionBtn.Text = "Disconnect";
         }
 
         private void googleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Google Dns", ToolTipIcon.Info);
-            string DnsServer = "8.8.8.8";
-            string DnsServer2 = "8.8.4.4";
-
-            NetworkManagement.SetDNS(DnsServer, DnsServer2);
+            NetworkManagement.SetDNS("8.8.8.8", "8.8.4.4");
+            ConnectionBtn.Text = "Disconnect";
         }
 
         private void electroToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Electro Dns", ToolTipIcon.Info);
 
-            string DnsServer = "78.157.42.100";
-            string DnsServer2 = "78.157.42.101";
+            NetworkManagement.SetDNS("78.157.42.100", "78.157.42.101");
+            ConnectionBtn.Text = "Disconnect";
+        }
+        private void shecanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Shecan Dns", ToolTipIcon.Info);
 
-            NetworkManagement.SetDNS(DnsServer, DnsServer2);
+            NetworkManagement.SetDNS("178.22.122.100", "185.51.200.2");
+            ConnectionBtn.Text = "Disconnect";
+        }
+
+        private void pingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Ping ping = new Ping();
+                PingReply Replay;
+                string Host;
+                Host = "Google.com";
+                Replay = ping.Send(Host);
+                if (Replay.Status == IPStatus.Success)
+                {
+                    NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Ping to " + Host.ToString() + "[" + Replay.Address.ToString() + "]" + " Successful"
+                       + " Response delay = " + Replay.RoundtripTime.ToString() + " ms" + "\n", ToolTipIcon.Info);
+                    
+                }
+            }
+            catch
+            {
+                NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "LoL ,Failed (No network connection or invalid server) 0 iq move ngl" ,ToolTipIcon.Info);
+               
+            }
         }
     }
 

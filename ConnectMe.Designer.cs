@@ -33,6 +33,13 @@ namespace ConnectMe
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectMe));
             this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.CmStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defualtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cloudflareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ciscoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.googleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.electroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shecanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ControlBoxPnl = new System.Windows.Forms.Panel();
@@ -44,12 +51,7 @@ namespace ConnectMe
             this.DnsBox = new System.Windows.Forms.ComboBox();
             this.BtnCurrentDns = new System.Windows.Forms.Button();
             this.ConnectionBtn = new System.Windows.Forms.Button();
-            this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.defualtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cloudflareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ciscoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.googleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.electroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CmStrip.SuspendLayout();
             this.ControlBoxPnl.SuspendLayout();
             this.ToolStrip.SuspendLayout();
@@ -69,10 +71,65 @@ namespace ConnectMe
             this.CmStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.CmStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem,
+            this.pingToolStripMenuItem,
             this.showToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.CmStrip.Name = "CmStrip";
-            this.CmStrip.Size = new System.Drawing.Size(181, 92);
+            this.CmStrip.Size = new System.Drawing.Size(181, 114);
+            // 
+            // connectToolStripMenuItem
+            // 
+            this.connectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.defualtToolStripMenuItem,
+            this.cloudflareToolStripMenuItem,
+            this.ciscoToolStripMenuItem,
+            this.googleToolStripMenuItem,
+            this.electroToolStripMenuItem,
+            this.shecanToolStripMenuItem});
+            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.connectToolStripMenuItem.Text = "Connect";
+            // 
+            // defualtToolStripMenuItem
+            // 
+            this.defualtToolStripMenuItem.Name = "defualtToolStripMenuItem";
+            this.defualtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.defualtToolStripMenuItem.Text = "Defualt";
+            this.defualtToolStripMenuItem.Click += new System.EventHandler(this.defualtToolStripMenuItem_Click);
+            // 
+            // cloudflareToolStripMenuItem
+            // 
+            this.cloudflareToolStripMenuItem.Name = "cloudflareToolStripMenuItem";
+            this.cloudflareToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cloudflareToolStripMenuItem.Text = "Cloudflare";
+            this.cloudflareToolStripMenuItem.Click += new System.EventHandler(this.cloudflareToolStripMenuItem_Click);
+            // 
+            // ciscoToolStripMenuItem
+            // 
+            this.ciscoToolStripMenuItem.Name = "ciscoToolStripMenuItem";
+            this.ciscoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ciscoToolStripMenuItem.Text = "Cisco";
+            this.ciscoToolStripMenuItem.Click += new System.EventHandler(this.ciscoToolStripMenuItem_Click);
+            // 
+            // googleToolStripMenuItem
+            // 
+            this.googleToolStripMenuItem.Name = "googleToolStripMenuItem";
+            this.googleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.googleToolStripMenuItem.Text = "Google";
+            this.googleToolStripMenuItem.Click += new System.EventHandler(this.googleToolStripMenuItem_Click);
+            // 
+            // electroToolStripMenuItem
+            // 
+            this.electroToolStripMenuItem.Name = "electroToolStripMenuItem";
+            this.electroToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.electroToolStripMenuItem.Text = "Electro";
+            this.electroToolStripMenuItem.Click += new System.EventHandler(this.electroToolStripMenuItem_Click);
+            // 
+            // shecanToolStripMenuItem
+            // 
+            this.shecanToolStripMenuItem.Name = "shecanToolStripMenuItem";
+            this.shecanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shecanToolStripMenuItem.Text = "toolStripMenuItem1";
             // 
             // showToolStripMenuItem
             // 
@@ -160,6 +217,7 @@ namespace ConnectMe
             "Cisco",
             "Google",
             "Electro",
+            "Shecan",
             "Custom"});
             this.DnsBox.Location = new System.Drawing.Point(12, 43);
             this.DnsBox.Name = "DnsBox";
@@ -186,52 +244,12 @@ namespace ConnectMe
             this.ConnectionBtn.UseVisualStyleBackColor = true;
             this.ConnectionBtn.Click += new System.EventHandler(this.ConnectionBtn_Click);
             // 
-            // connectToolStripMenuItem
+            // pingToolStripMenuItem
             // 
-            this.connectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.defualtToolStripMenuItem,
-            this.cloudflareToolStripMenuItem,
-            this.ciscoToolStripMenuItem,
-            this.googleToolStripMenuItem,
-            this.electroToolStripMenuItem});
-            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.connectToolStripMenuItem.Text = "Connect";
-            // 
-            // defualtToolStripMenuItem
-            // 
-            this.defualtToolStripMenuItem.Name = "defualtToolStripMenuItem";
-            this.defualtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.defualtToolStripMenuItem.Text = "Defualt";
-            this.defualtToolStripMenuItem.Click += new System.EventHandler(this.defualtToolStripMenuItem_Click);
-            // 
-            // cloudflareToolStripMenuItem
-            // 
-            this.cloudflareToolStripMenuItem.Name = "cloudflareToolStripMenuItem";
-            this.cloudflareToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cloudflareToolStripMenuItem.Text = "Cloudflare";
-            this.cloudflareToolStripMenuItem.Click += new System.EventHandler(this.cloudflareToolStripMenuItem_Click);
-            // 
-            // ciscoToolStripMenuItem
-            // 
-            this.ciscoToolStripMenuItem.Name = "ciscoToolStripMenuItem";
-            this.ciscoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ciscoToolStripMenuItem.Text = "Cisco";
-            this.ciscoToolStripMenuItem.Click += new System.EventHandler(this.ciscoToolStripMenuItem_Click);
-            // 
-            // googleToolStripMenuItem
-            // 
-            this.googleToolStripMenuItem.Name = "googleToolStripMenuItem";
-            this.googleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.googleToolStripMenuItem.Text = "Google";
-            this.googleToolStripMenuItem.Click += new System.EventHandler(this.googleToolStripMenuItem_Click);
-            // 
-            // electroToolStripMenuItem
-            // 
-            this.electroToolStripMenuItem.Name = "electroToolStripMenuItem";
-            this.electroToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.electroToolStripMenuItem.Text = "Electro";
-            this.electroToolStripMenuItem.Click += new System.EventHandler(this.electroToolStripMenuItem_Click);
+            this.pingToolStripMenuItem.Name = "pingToolStripMenuItem";
+            this.pingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pingToolStripMenuItem.Text = "Ping";
+            this.pingToolStripMenuItem.Click += new System.EventHandler(this.pingToolStripMenuItem_Click);
             // 
             // ConnectMe
             // 
@@ -279,6 +297,8 @@ namespace ConnectMe
         private System.Windows.Forms.ToolStripMenuItem ciscoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem googleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem electroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem shecanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pingToolStripMenuItem;
     }
 }
 
