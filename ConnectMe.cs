@@ -10,6 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.IO;
+using System.Drawing.Drawing2D;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using ConnectMe.DNS;
+using ConnectMe.Updates;
+
 
 namespace ConnectMe
 {
@@ -21,56 +28,39 @@ namespace ConnectMe
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int hwnd, int wParam, int lparam);
-        Custom CustomForm;
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(int LeftRect, int TopRect, int RightRect, int BottomRect, int Width, int Height);
 
- 
         public ConnectMe()
         {
             InitializeComponent();
         }
         private void ConnectMe_Load(object sender, EventArgs e)
         {
-            CustomForm = new Custom();
+            Configs.PathChecker();
+            DnsManager.TxtReader();
+            ConnectMeloadin();
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 10, 10));
+            ConnectionBtn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, ConnectionBtn.Width, ConnectionBtn.Height, 5, 5));
+            DnsBox.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, DnsBox.Width, DnsBox.Height, 3, 3));
 
         }
-
+        public void ConnectMeloadin()
+        {
+            DnsBox.Items.Clear();
+            DnsManager.MrDns(DnsBox);
+            Configs.SetDefaults(Item1, Item2, Item3, Item4, Item5);
+            Configs.ThemesManager(this);
+            Updater.CheckForUpdates();
+        }
         private void ConnectionBtn_Click(object sender, EventArgs e)
         {
             if (ConnectionBtn.Text == "Connect")
             {
                 if (DnsBox.SelectedItem != null)
                 {
-                    if (DnsBox.SelectedItem == "Cloudflare")
-                    {
-                        NetworkManagement.SetDNS("1.1.1.1", "1.0.0.1");
-                        ConnectionBtn.Text = "Disconnect";
-                    }
-                    if (DnsBox.SelectedItem == "Cisco")
-                    {
-                        NetworkManagement.SetDNS("208.67.222.222", "208.67.220.220");
-                        ConnectionBtn.Text = "Disconnect";
-                    }
-                    if (DnsBox.SelectedItem == "Google")
-                    {
-                        NetworkManagement.SetDNS("8.8.8.8", "8.8.4.4");
-                        ConnectionBtn.Text = "Disconnect";
-                    }
-                    if (DnsBox.SelectedItem == "Electro")
-                    {
-                        NetworkManagement.SetDNS("78.157.42.100", "78.157.42.101");
-                        ConnectionBtn.Text = "Disconnect";
-                    }
-                    if (DnsBox.SelectedItem == "Shecan")
-                    {
-                        NetworkManagement.SetDNS("178.22.122.100", "185.51.200.2");
-                        ConnectionBtn.Text = "Disconnect";
-                    }
-                    if (DnsBox.SelectedItem == "Custom")
-                    {
-                        CustomForm.ShowDialog();
-                        ConnectionBtn.Text = "Disconnect";
-                    }
-
+                    DnsManager.SetDns(DnsBox.SelectedItem.ToString(), ConnectionBtn);
+                    NotifyIcon.ShowBalloonTip(300, "ConnectMe", $"Connected To {DnsBox.SelectedText.ToString()}", ToolTipIcon.Info);
                 }
                 else if (DnsBox.SelectedItem == null)
                 {
@@ -79,7 +69,8 @@ namespace ConnectMe
             }
             else if (ConnectionBtn.Text == "Disconnect")
             {
-                NetworkManagement.UnsetDNS();
+
+                DnsManager.UnsetDNS();
                 ConnectionBtn.Text = "Connect";
             }
         }
@@ -118,7 +109,7 @@ namespace ConnectMe
             {
                 this.Hide();
                 NotifyIcon.Visible = true;
-                NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Im Still Here :)", ToolTipIcon.Info);
+                NotifyIcon.ShowBalloonTip(300, "ConnectMe", "Im Still Here :)", ToolTipIcon.Info);
             }
             else if (FormWindowState.Normal == this.WindowState)
             { NotifyIcon.Visible = false; }
@@ -132,7 +123,8 @@ namespace ConnectMe
 
         private void BtnCurrentDns_Click(object sender, EventArgs e)
         {
-            BtnCurrentDns.Text = NetworkManagement.GetCurrentDns();
+            BtnCurrentDns.Text = DnsManager.GetCurrentDns();
+            DnsManager.MrDns(DnsBox);
         }
 
         private void BtnPingFormOpen_Click(object sender, EventArgs e)
@@ -143,7 +135,7 @@ namespace ConnectMe
 
         private void NotifyIcon_Click(object sender, EventArgs e)
         {
- 
+
 
         }
         private void BtnDirect_ButtonSpecPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -172,51 +164,8 @@ namespace ConnectMe
 
         private void ConnectMe_Move(object sender, EventArgs e)
         {
-            
+
         }
-
-        private void defualtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NetworkManagement.UnsetDNS();
-            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected Back To Defualt", ToolTipIcon.Info);
-        }
-
-        private void cloudflareToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To CloudFlare Dns", ToolTipIcon.Info);
-            NetworkManagement.SetDNS("1.1.1.1", "1.0.0.1");
-            ConnectionBtn.Text = "Disconnect";
-        }
-
-        private void ciscoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Cisco Dns", ToolTipIcon.Info);
-            NetworkManagement.SetDNS("208.67.222.222", "208.67.220.220");
-            ConnectionBtn.Text = "Disconnect";
-        }
-
-        private void googleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Google Dns", ToolTipIcon.Info);
-            NetworkManagement.SetDNS("8.8.8.8", "8.8.4.4");
-            ConnectionBtn.Text = "Disconnect";
-        }
-
-        private void electroToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Electro Dns", ToolTipIcon.Info);
-
-            NetworkManagement.SetDNS("78.157.42.100", "78.157.42.101");
-            ConnectionBtn.Text = "Disconnect";
-        }
-        private void shecanToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Connected To Shecan Dns", ToolTipIcon.Info);
-
-            NetworkManagement.SetDNS("178.22.122.100", "185.51.200.2");
-            ConnectionBtn.Text = "Disconnect";
-        }
-
         private void pingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -228,17 +177,92 @@ namespace ConnectMe
                 Replay = ping.Send(Host);
                 if (Replay.Status == IPStatus.Success)
                 {
-                    NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "Ping to " + Host.ToString() + "[" + Replay.Address.ToString() + "]" + " Successful"
+                    NotifyIcon.ShowBalloonTip(300, "ConnectMe", "Ping to " + Host.ToString() + "[" + Replay.Address.ToString() + "]" + " Successful"
                        + " Response delay = " + Replay.RoundtripTime.ToString() + " ms" + "\n", ToolTipIcon.Info);
-                    
+
                 }
             }
             catch
             {
-                NotifyIcon.ShowBalloonTip(1000, "ConnectMe", "LoL ,Failed (No network connection or invalid server) 0 iq move ngl" ,ToolTipIcon.Info);
-               
+                NotifyIcon.ShowBalloonTip(300, "ConnectMe", "Failed (No network connection or invalid server) ", ToolTipIcon.Info);
+
             }
         }
+
+        private void SettingBtn_Click(object sender, EventArgs e)
+        {
+            using (Setting Settingform = new Setting())
+            {
+                Settingform.ShowDialog();
+            }
+        }
+
+        private void CmStrip_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+        private void defualtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DnsManager.UnsetDNS();
+            NotifyIcon.ShowBalloonTip(300, "ConnectMe", "Connected Back To Defualt", ToolTipIcon.Info);
+        }
+        private void Item1_Click(object sender, EventArgs e)
+        {
+            DnsManager.SetDns(Item1.Text, ConnectionBtn);
+            NotifyIcon.ShowBalloonTip(300, "ConnectMe", $"Connected To {Item1.Text}", ToolTipIcon.Info);
+        }
+
+        private void Item2_Click(object sender, EventArgs e)
+        {
+            DnsManager.SetDns(Item2.Text, ConnectionBtn);
+            NotifyIcon.ShowBalloonTip(300, "ConnectMe", $"Connected To {Item2.Text}", ToolTipIcon.Info);
+        }
+
+        private void Item3_Click(object sender, EventArgs e)
+        {
+            DnsManager.SetDns(Item3.Text, ConnectionBtn);
+            NotifyIcon.ShowBalloonTip(300, "ConnectMe", $"Connected To {Item3.Text}", ToolTipIcon.Info);
+        }
+
+        private void Item4_Click(object sender, EventArgs e)
+        {
+            DnsManager.SetDns(Item4.Text, ConnectionBtn);
+            NotifyIcon.ShowBalloonTip(300, "ConnectMe", $"Connected To {Item4.Text}", ToolTipIcon.Info);
+        }
+
+        private void Item5_Click(object sender, EventArgs e)
+        {
+            DnsManager.SetDns(Item5.Text, ConnectionBtn);
+            NotifyIcon.ShowBalloonTip(300, "ConnectMe", $"Connected To {Item5.Text}", ToolTipIcon.Info);
+        }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DnsBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConnectMe_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+        public ComboBox DnsBoxMain { get { return DnsBox; } }
+        public Button BtnConnect { get { return ConnectionBtn; } }
+        public Button BtnRefresh { get { return BtnCurrentDns; } }
+        public ToolStrip TsMain { get { return MainToolStrip; } }
+        public ContextMenuStrip Cmsrip { get { return CmStrip; } }
+        public ContextMenuStrip CmConnect { get { return ConnectCmStrip; } }
+        public ToolStripButton btnexit { get { return ExitBtn; } }
+        public ToolStripButton btnMini { get { return MinimizeBtn; } }
+        public ToolStripButton btnSetting { get { return SettingBtn; } }
+        public ToolStripButton btnpingfrm { get { return BtnPingFormOpen; } }
+        
+
+
     }
 
 }

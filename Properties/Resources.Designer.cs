@@ -83,6 +83,16 @@ namespace ConnectMe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap compress_dark {
+            get {
+                object obj = ResourceManager.GetObject("compress_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logout_16 {
             get {
                 object obj = ResourceManager.GetObject("Logout_16", resourceCulture);
@@ -93,9 +103,29 @@ namespace ConnectMe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pin_16 {
+        internal static System.Drawing.Bitmap logout_dark {
             get {
-                object obj = ResourceManager.GetObject("Pin_16", resourceCulture);
+                object obj = ResourceManager.GetObject("logout_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap setting_dark {
+            get {
+                object obj = ResourceManager.GetObject("setting_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_144px {
+            get {
+                object obj = ResourceManager.GetObject("settings_144px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
