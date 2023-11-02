@@ -19,9 +19,11 @@ namespace ConnectMe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             if (!isStillRunning())
             {
                 Application.Run(new ConnectMe());
+                Configs.AdminRelauncher();
             }
             else
             {

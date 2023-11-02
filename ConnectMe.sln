@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectMe.Updates", "..\Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectMe.Style", "..\ConnectMe.Style\ConnectMe.Style.csproj", "{A8B4B7EB-C669-45AB-888A-342F52974DE8}"
 EndProject
-Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "ConnectMe.Installer", "..\ConnectMe.Installer\ConnectMe.Installer.aiproj", "{B1F6AB1D-B8B3-46C9-B312-99E1F8D1F58D}"
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "ConnectMe.installer", "..\ConnectMe.installer\ConnectMe.installer.aiproj", "{AE2D5BE8-C978-49AA-A514-49D94BED2396}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,14 +53,14 @@ Global
 		{A8B4B7EB-C669-45AB-888A-342F52974DE8}.DefaultBuild|Any CPU.Build.0 = Debug|Any CPU
 		{A8B4B7EB-C669-45AB-888A-342F52974DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8B4B7EB-C669-45AB-888A-342F52974DE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1F6AB1D-B8B3-46C9-B312-99E1F8D1F58D}.All|Any CPU.ActiveCfg = DefaultBuild
-		{B1F6AB1D-B8B3-46C9-B312-99E1F8D1F58D}.All|Any CPU.Build.0 = DefaultBuild
-		{B1F6AB1D-B8B3-46C9-B312-99E1F8D1F58D}.Debug|Any CPU.ActiveCfg = DefaultBuild
-		{B1F6AB1D-B8B3-46C9-B312-99E1F8D1F58D}.Debug|Any CPU.Build.0 = DefaultBuild
-		{B1F6AB1D-B8B3-46C9-B312-99E1F8D1F58D}.DefaultBuild|Any CPU.ActiveCfg = DefaultBuild
-		{B1F6AB1D-B8B3-46C9-B312-99E1F8D1F58D}.DefaultBuild|Any CPU.Build.0 = DefaultBuild
-		{B1F6AB1D-B8B3-46C9-B312-99E1F8D1F58D}.Release|Any CPU.ActiveCfg = DefaultBuild
-		{B1F6AB1D-B8B3-46C9-B312-99E1F8D1F58D}.Release|Any CPU.Build.0 = DefaultBuild
+		{AE2D5BE8-C978-49AA-A514-49D94BED2396}.All|Any CPU.ActiveCfg = DefaultBuild
+		{AE2D5BE8-C978-49AA-A514-49D94BED2396}.All|Any CPU.Build.0 = DefaultBuild
+		{AE2D5BE8-C978-49AA-A514-49D94BED2396}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{AE2D5BE8-C978-49AA-A514-49D94BED2396}.Debug|Any CPU.Build.0 = DefaultBuild
+		{AE2D5BE8-C978-49AA-A514-49D94BED2396}.DefaultBuild|Any CPU.ActiveCfg = DefaultBuild
+		{AE2D5BE8-C978-49AA-A514-49D94BED2396}.DefaultBuild|Any CPU.Build.0 = DefaultBuild
+		{AE2D5BE8-C978-49AA-A514-49D94BED2396}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{AE2D5BE8-C978-49AA-A514-49D94BED2396}.Release|Any CPU.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
+using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace ConnectMe
@@ -48,14 +49,69 @@ namespace ConnectMe
         }
         public static void PathChecker()
         {
-            string Path = Application.StartupPath + @"\Dns.txt";
-            if (File.Exists(Path) == false)
+            
+            string OldPath = Application.StartupPath + @"\Dns.txt";
+            string Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ConnectMe\Dns.txt";
+            if (File.Exists(OldPath))
             {
-                File.CreateText(Path);    
-                MessageBox.Show("Applied Some Changes; Restarting The Application","Restart",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                File.Move(OldPath, Path);
+                MessageBox.Show("Applied Some Changes; Restarting The Application", "Restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Restart();
+                
+            }
+            else if (!File.Exists(Path))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ConnectMe");
+                File.CreateText(Path);
+                MessageBox.Show("Applied Some Changes; Restarting The Application", "Restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Restart();
             }
+            
         }
+        public static void AdminRelauncher()
+        {
+            if (!IsRunAsAdmin())
+            {
+                ProcessStartInfo proc = new ProcessStartInfo();
+                proc.UseShellExecute = true;
+                proc.WorkingDirectory = Environment.CurrentDirectory;
+                proc.FileName = Assembly.GetEntryAssembly().CodeBase;
+
+                proc.Verb = "runas";
+                if (MessageBox.Show("This program must be run as an administrator! \n\n Relaunch as Admin? (No = Exit)", ("Admin Privilages Needed!"), MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                {
+                    Process.Start(proc);
+                    Application.Exit();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+
+            }
+        }
+
+        private static bool IsRunAsAdmin()
+        {
+            WindowsIdentity id = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(id);
+
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+        public static void RegisterInStartup(bool isChecked)
+        {
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
+                    ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (isChecked)
+            {
+                registryKey.SetValue("ConnectMe", Application.ExecutablePath);
+            }
+            else
+            {
+                registryKey.DeleteValue("ConnectMe");
+            }
+        }
+
         public static void ThemesManager(ConnectMe frm)
         {
 

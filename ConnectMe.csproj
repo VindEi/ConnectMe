@@ -135,7 +135,7 @@
       <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="Style.cs" />
+    <Compile Include="Configs.cs" />
     <Compile Include="Theme.cs" />
     <EmbeddedResource Include="AddDns.resx">
       <DependentUpon>AddDns.cs</DependentUpon>
@@ -171,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="C.ico" />
+    <Content Include="Dns.txt" />
     <Content Include="Resources\Compress_16.png" />
     <Content Include="Resources\compress_dark.png" />
     <Content Include="Resources\C_32.png" />

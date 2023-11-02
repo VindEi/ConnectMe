@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ConnectMe.DNS;
+using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ConnectMe.DNS;
 
 namespace ConnectMe
 {
@@ -25,10 +18,10 @@ namespace ConnectMe
         {
             addDns = new AddDns();
 
-            
+
             DnsManager.MrDns(comboBox1);
             comboBox1.Items.Add("Null");
-            
+
             DnsManager.MrDns(comboBox2);
             comboBox2.Items.Add("Null");
 
@@ -43,15 +36,22 @@ namespace ConnectMe
 
             DnsManager.MrDns(comboBox6);
 
-            if(Properties.Settings.Default.Mode=="Dark")
+            if (Properties.Settings.Default.Mode == "Dark")
             {
                 ModeSwitchBar.Value = 2;
             }
-            else if (Properties.Settings.Default.Mode =="Light")
+            else if (Properties.Settings.Default.Mode == "Light")
             {
                 ModeSwitchBar.Value = 1;
             }
-            
+            if (Properties.Settings.Default.AutoStart == true)
+            {
+                startup.Checked = true;
+            }
+            else
+            {
+                startup.Checked = false;
+            }
 
         }
         private bool IsCbNullorIsEqualToNull(ComboBox Cm)
@@ -139,7 +139,7 @@ namespace ConnectMe
             Properties.Settings.Default.Save();
             MessageBox.Show("Changes Saved", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            
+
         }
 
         private void BtnRemove_Click(object sender, EventArgs e)
@@ -153,7 +153,7 @@ namespace ConnectMe
             {
                 MessageBox.Show("Remove What?", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
 
         private void OpnFrmBtn_Click(object sender, EventArgs e)
@@ -172,24 +172,24 @@ namespace ConnectMe
 
         private void ModeSwitchBar_ValueChanged(object sender, EventArgs e)
         {
-            if (ModeSwitchBar.Value==1)
+            if (ModeSwitchBar.Value == 1)
             {
                 Properties.Settings.Default.Mode = "Light";
-                
+
 
             }
-            else if (ModeSwitchBar.Value==2)
+            else if (ModeSwitchBar.Value == 2)
             {
                 Properties.Settings.Default.Mode = "Dark";
-                
+
             }
-            
+
 
         }
 
         private void Setting_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+
 
         }
 
@@ -210,16 +210,45 @@ namespace ConnectMe
             {
                 client.DownloadFileAsync(new Uri(url), DnsManager.Path);
             }
-            
 
 
 
-            
+
+
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             MessageBox.Show("File downloaded");
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LIGHTlbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void startup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (startup.Checked)
+            {
+                Properties.Settings.Default.AutoStart = true;
+                Configs.RegisterInStartup(true);
+            }
+            else
+            {
+                Properties.Settings.Default.AutoStart = false;
+                Configs.RegisterInStartup(false);
+            }
         }
     }
 

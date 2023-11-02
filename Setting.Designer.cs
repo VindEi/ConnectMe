@@ -50,6 +50,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.LIGHTlbl = new System.Windows.Forms.Label();
             this.BtnDnsDefaults = new System.Windows.Forms.Button();
+            this.startup = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.ModeSwitchBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +76,7 @@
             // 
             // savecustombtn
             // 
-            this.savecustombtn.Location = new System.Drawing.Point(15, 283);
+            this.savecustombtn.Location = new System.Drawing.Point(25, 269);
             this.savecustombtn.Name = "savecustombtn";
             this.savecustombtn.Size = new System.Drawing.Size(149, 79);
             this.savecustombtn.TabIndex = 7;
@@ -184,6 +185,7 @@
             this.label7.Size = new System.Drawing.Size(109, 20);
             this.label7.TabIndex = 18;
             this.label7.Text = "Remove Dns :";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // comboBox6
             // 
@@ -198,11 +200,11 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(211, 117);
+            this.label8.Location = new System.Drawing.Point(194, 117);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 20);
+            this.label8.Size = new System.Drawing.Size(79, 20);
             this.label8.TabIndex = 20;
-            this.label8.Text = "Add New Dns :";
+            this.label8.Text = "Add Dns :";
             // 
             // BtnRemove
             // 
@@ -218,12 +220,13 @@
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label9.Location = new System.Drawing.Point(12, 245);
+            this.label9.Location = new System.Drawing.Point(12, 232);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(178, 34);
             this.label9.TabIndex = 22;
             this.label9.Text = "Leaving as null or empty will remove it";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // ModeSwitchBar
             // 
@@ -243,7 +246,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(225, 258);
+            this.label10.Location = new System.Drawing.Point(235, 258);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(48, 21);
             this.label10.TabIndex = 24;
@@ -259,6 +262,7 @@
             this.LIGHTlbl.Size = new System.Drawing.Size(58, 20);
             this.LIGHTlbl.TabIndex = 25;
             this.LIGHTlbl.Text = "LIGHT";
+            this.LIGHTlbl.Click += new System.EventHandler(this.LIGHTlbl_Click);
             // 
             // BtnDnsDefaults
             // 
@@ -270,12 +274,29 @@
             this.BtnDnsDefaults.UseVisualStyleBackColor = true;
             this.BtnDnsDefaults.Click += new System.EventHandler(this.BtnDnsDefaults_Click);
             // 
+            // startup
+            // 
+            this.startup.AutoSize = true;
+            this.startup.BackColor = System.Drawing.Color.White;
+            this.startup.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.startup.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.startup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startup.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.startup.Location = new System.Drawing.Point(25, 363);
+            this.startup.Name = "startup";
+            this.startup.Size = new System.Drawing.Size(138, 21);
+            this.startup.TabIndex = 27;
+            this.startup.Text = "Start with windows";
+            this.startup.UseVisualStyleBackColor = true;
+            this.startup.CheckedChanged += new System.EventHandler(this.startup_CheckedChanged);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.ClientSize = new System.Drawing.Size(353, 374);
+            this.ClientSize = new System.Drawing.Size(354, 408);
+            this.Controls.Add(this.startup);
             this.Controls.Add(this.BtnDnsDefaults);
             this.Controls.Add(this.LIGHTlbl);
             this.Controls.Add(this.label10);
@@ -334,5 +355,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label LIGHTlbl;
         private System.Windows.Forms.Button BtnDnsDefaults;
+        private System.Windows.Forms.CheckBox startup;
     }
 }
