@@ -43,7 +43,7 @@ namespace ConnectMe
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 10, 10));
             ConnectionBtn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, ConnectionBtn.Width, ConnectionBtn.Height, 5, 5));
             DnsBox.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, DnsBox.Width, DnsBox.Height, 3, 3));
-
+            Configs.Run();
         }
         public void ConnectMeloadin()
         {
@@ -55,6 +55,7 @@ namespace ConnectMe
         }
         private void ConnectionBtn_Click(object sender, EventArgs e)
         {
+
             if (ConnectionBtn.Text == "Connect")
             {
                 if (DnsBox.SelectedItem != null)
@@ -124,7 +125,6 @@ namespace ConnectMe
         private void BtnCurrentDns_Click(object sender, EventArgs e)
         {
             BtnCurrentDns.Text = DnsManager.GetCurrentDns();
-            DnsManager.MrDns(DnsBox);
         }
 
         private void BtnPingFormOpen_Click(object sender, EventArgs e)

@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Management;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Drawing.Text;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+
+
 
 namespace ConnectMe
 {
@@ -19,37 +19,16 @@ namespace ConnectMe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new ConnectMe());
 
-            if (!isStillRunning())
-            {
-                Application.Run(new ConnectMe());
-                Configs.AdminRelauncher();
-            }
-            else
-            {
-                MessageBox.Show("Previous process still running.",
-                   "Application Halted", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                Application.Exit();
-            }
+            // soo this check if it should run the app (i want it to be admin & only 1 instance of the app launched)
+            // the app runs alr the functions dont work
+            // go c# then js 
 
 
-        }
-        static bool isStillRunning()
-        {
-            string procName = Process.GetCurrentProcess().ProcessName;
-            // get the list of all processes by that name
 
-            Process[] processes = Process.GetProcessesByName(procName);
 
-            if (processes.Length > 1)
-            {
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Security.Principal;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ConnectMe
@@ -49,7 +50,7 @@ namespace ConnectMe
         }
         public static void PathChecker()
         {
-            
+
             string OldPath = Application.StartupPath + @"\Dns.txt";
             string Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ConnectMe\Dns.txt";
             if (File.Exists(OldPath))
@@ -57,7 +58,7 @@ namespace ConnectMe
                 File.Move(OldPath, Path);
                 MessageBox.Show("Applied Some Changes; Restarting The Application", "Restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Restart();
-                
+
             }
             else if (!File.Exists(Path))
             {
@@ -66,37 +67,75 @@ namespace ConnectMe
                 MessageBox.Show("Applied Some Changes; Restarting The Application", "Restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Restart();
             }
-            
-        }
-        public static void AdminRelauncher()
-        {
-            if (!IsRunAsAdmin())
-            {
-                ProcessStartInfo proc = new ProcessStartInfo();
-                proc.UseShellExecute = true;
-                proc.WorkingDirectory = Environment.CurrentDirectory;
-                proc.FileName = Assembly.GetEntryAssembly().CodeBase;
 
-                proc.Verb = "runas";
-                if (MessageBox.Show("This program must be run as an administrator! \n\n Relaunch as Admin? (No = Exit)", ("Admin Privilages Needed!"), MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.OK)
-                {
-                    Process.Start(proc);
-                    Application.Exit();
-                }
-                else
-                {
-                    Application.Exit();
-                }
-
-            }
         }
 
-        private static bool IsRunAsAdmin()
+
+        public static bool IsAdmin()
         {
             WindowsIdentity id = WindowsIdentity.GetCurrent();
             WindowsPrincipal principal = new WindowsPrincipal(id);
 
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+        public static bool IsSingleInstance()
+        {
+            string procName = Process.GetCurrentProcess().ProcessName;
+            // get the list of all processes by that name
+
+            Process[] processes = Process.GetProcessesByName(procName);
+
+            if (processes.Length > 1)
+            {
+
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static void Relaunch()
+        {
+            try
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = Application.ExecutablePath;
+                startInfo.Verb = "runas";
+                startInfo.UseShellExecute = true;
+                Process.Start(startInfo);
+
+                // Close the current instance of the application
+                Environment.Exit(1);
+            }
+            catch 
+            { 
+            Application.Exit();
+            }
+        }
+        public static void Run()
+        {
+            if (IsAdmin())
+            {
+                if (!IsSingleInstance())
+                {
+                    MessageBox.Show("Instance already running");
+                    Environment.Exit(1);
+                }
+
+            }
+            else if (!IsAdmin())
+            {
+                if (MessageBox.Show("This program must be run as an administrator! \n\n Relaunch as Admin? (No = Exit)", ("Admin Privilages Needed!"), MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                {
+                    Relaunch();
+                }
+                else
+                {
+                    Environment.Exit(1);
+                }
+            }
         }
         public static void RegisterInStartup(bool isChecked)
         {
