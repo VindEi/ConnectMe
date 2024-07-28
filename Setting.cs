@@ -211,10 +211,6 @@ namespace ConnectMe
                 client.DownloadFileAsync(new Uri(url), DnsManager.Path);
             }
 
-
-
-
-
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)

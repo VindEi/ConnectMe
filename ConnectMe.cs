@@ -16,6 +16,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using ConnectMe.DNS;
 using ConnectMe.Updates;
+using System.Diagnostics;
+using System.Security.Policy;
 
 
 namespace ConnectMe
@@ -260,8 +262,45 @@ namespace ConnectMe
         public ToolStripButton btnMini { get { return MinimizeBtn; } }
         public ToolStripButton btnSetting { get { return SettingBtn; } }
         public ToolStripButton btnpingfrm { get { return BtnPingFormOpen; } }
-        
 
+
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            DialogResult p = MessageBox.Show("good news theres a better version of ConnectMe with more features(free vpn soon?) bad news u have to install it want me to download the installer for it?", "New Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (p == DialogResult.OK) ;
+            {
+                var url1 = new ProcessStartInfo("https://github.com/VindEi/DnsSnap/releases/latest/download/DnsSnapInstaller.exe")
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+                var url2 = new ProcessStartInfo("https://github.com/VindEi/DnsSnap/releases/latest/")
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                }; 
+                var url3 = new ProcessStartInfo("https://streamable.com/jj5bcu")
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+
+                try
+                {
+                    Process.Start(url1);
+                    Process.Start(url2);
+                    Process.Start(url3);
+                }
+                catch
+                {
+                    MessageBox.Show("please go to https://github.com/VindEi/DnsSnap copied for you", "Failed",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    Clipboard.SetText("https://github.com/VindEi/DnsSnap");
+                }
+
+
+            }
+        }
 
     }
 

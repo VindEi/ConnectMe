@@ -50,6 +50,7 @@ namespace ConnectMe
             this.SettingBtn = new System.Windows.Forms.ToolStripButton();
             this.Separator = new System.Windows.Forms.ToolStripSeparator();
             this.BtnPingFormOpen = new System.Windows.Forms.ToolStripButton();
+            this.Update = new System.Windows.Forms.ToolStripButton();
             this.DnsBox = new System.Windows.Forms.ComboBox();
             this.BtnCurrentDns = new System.Windows.Forms.Button();
             this.ConnectionBtn = new System.Windows.Forms.Button();
@@ -184,7 +185,8 @@ namespace ConnectMe
             this.MinimizeBtn,
             this.SettingBtn,
             this.Separator,
-            this.BtnPingFormOpen});
+            this.BtnPingFormOpen,
+            this.Update});
             this.MainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.MainToolStrip.Name = "MainToolStrip";
             this.MainToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -237,6 +239,20 @@ namespace ConnectMe
             this.BtnPingFormOpen.Size = new System.Drawing.Size(35, 22);
             this.BtnPingFormOpen.Text = "Ping";
             this.BtnPingFormOpen.Click += new System.EventHandler(this.BtnPingFormOpen_Click);
+            // 
+            // Update
+            // 
+            this.Update.Checked = true;
+            this.Update.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.Update.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Update.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.Update.Image = ((System.Drawing.Image)(resources.GetObject("Update.Image")));
+            this.Update.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Update.Name = "Update";
+            this.Update.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Update.Size = new System.Drawing.Size(67, 22);
+            this.Update.Text = "-DnsSnap-";
+            this.Update.Click += new System.EventHandler(this.Update_Click);
             // 
             // DnsBox
             // 
@@ -340,6 +356,7 @@ namespace ConnectMe
         private System.Windows.Forms.ContextMenuStrip CmStrip;
         private System.Windows.Forms.ToolStrip MainToolStrip;
         private System.Windows.Forms.ContextMenuStrip ConnectCmStrip;
+        private System.Windows.Forms.ToolStripButton Update;
     }
 }
 
