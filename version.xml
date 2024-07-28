@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <item>
-	<version>3.0.4.0</version>
-	<url>https://github.com/vindye/ConnectMe/releases/latest/download/ConnectMe.exe</url>
-	<changelog>https://github.com/Vindye/ConnectMe/releases/latest</changelog>
+	<version>3.0.5.0</version>
+	<url>https://github.com/vindei/ConnectMe/releases/latest/download/ConnectMe.exe</url>
+	<changelog>https://github.com/Vindei/ConnectMe/releases/latest</changelog>
 	<mandatory>true</mandatory>
 </item>
